@@ -125,13 +125,13 @@ function (_, queryDef) {
               stats.std_deviation_bounds_upper = stats.std_deviation_bounds.upper;
               stats.std_deviation_bounds_lower = stats.std_deviation_bounds.lower;
 
-              metricName = this._getMetricName(statName);
+              metricName = this._getMetricName(statName) + " " + metric.field;
               doc[metricName] = stats[statName];
             }
             break;
           }
           default:  {
-            metricName = this._getMetricName(metric.type);
+            metricName = this._getMetricName(metric.type) + " " + metric.field;
             doc[metricName] =bucket[metric.id].value;
             break;
           }
