@@ -456,7 +456,7 @@ describe('ElasticResponse', function() {
     beforeEach(function() {
       targets = [{
         refId: 'A',
-        metrics: [{type: 'avg', id: '1'}, {type: 'count' }],
+        metrics: [{type: 'avg', id: '1', field: 'value'}, {type: 'count' }],
         bucketAggs: [{id: '2', type: 'terms', field: 'host'}],
       }];
 
@@ -489,11 +489,11 @@ describe('ElasticResponse', function() {
       expect(result.data[0].type).to.be('docs');
       expect(result.data[0].datapoints.length).to.be(2);
       expect(result.data[0].datapoints[0].host).to.be("server-1");
-      expect(result.data[0].datapoints[0].Average).to.be(1000);
+      expect(result.data[0].datapoints[0]['Average value']).to.be(1000);
       expect(result.data[0].datapoints[0].Count).to.be(369);
 
       expect(result.data[0].datapoints[1].host).to.be("server-2");
-      expect(result.data[0].datapoints[1].Average).to.be(2000);
+      expect(result.data[0].datapoints[1]['Average value']).to.be(2000);
     });
   });
 
